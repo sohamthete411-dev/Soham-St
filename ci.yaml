@@ -1,0 +1,12 @@
+name: ci
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+steps:
+  - uses: actions/checkout@v4
+  - run: echo "build started for $github_sha"
+  - run: ls-la
