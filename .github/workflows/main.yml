@@ -1,19 +1,19 @@
-name: c1
+name: Upload Artifact
 
 on: push
 
-env:
-  app_name: my-app
-
 jobs:
-  build:
+  upload:
     runs-on: ubuntu-latest
 
-    env:
-      NODE_ENV: production
-
     steps:
-      - name: Show them
-        env:
-          greeting: hello
-        run: echo "$app_name $NODE_ENV $greeting"
+      - uses: actions/checkout@v4
+
+      - name: Create file
+        run: echo "Hello GitHub Actions" > hello.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: hello.txt
