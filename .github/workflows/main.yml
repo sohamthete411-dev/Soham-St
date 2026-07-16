@@ -1,12 +1,19 @@
 name: c1
-env: push
- apps_name: my-app
+
+on: push
+
+env:
+  app_name: my-app
+
 jobs:
-  runs-on: ubuntu-latest
-  env:
-    Node_env: production
-  steps:
-    - name: show them
+  build:
+    runs-on: ubuntu-latest
+
     env:
-    greeting: ello
-    run: echo "$app_name $node_env $greeting"
+      NODE_ENV: production
+
+    steps:
+      - name: Show them
+        env:
+          greeting: hello
+        run: echo "$app_name $NODE_ENV $greeting"
