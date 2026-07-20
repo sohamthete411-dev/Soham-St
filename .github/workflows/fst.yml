@@ -1,0 +1,24 @@
+name: Two-Dimensional Matrix
+
+on:
+  push:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: [18, 20]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Display Matrix Values
+        run: echo "OS: ${{ matrix.os }}, Node: ${{ matrix.node-version }}"
