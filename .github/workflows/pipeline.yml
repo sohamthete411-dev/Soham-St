@@ -1,0 +1,21 @@
+name: Pipeline
+
+on:
+  push:
+
+jobs:
+  matrix:
+    strategy:
+      matrix:
+        node: ["16", "20"]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - run: echo "Testing on Node ${{ matrix.node }}"
